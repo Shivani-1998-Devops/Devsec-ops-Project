@@ -3,10 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   name: postgres-volume-claim
   namespace: three-tier
-spec: 
-  accessModes:  
+spec:
+  accessModes:
     - ReadWriteOnce
-  storageClassName: ""
+  storageClassName: gp2
   resources:
     requests:
       storage: 1Gi
