@@ -1,0 +1,19 @@
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform.lock.hcl
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.tfstate
+.terraform.tfstate.backup
+
+# Local IDE and OS files
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
