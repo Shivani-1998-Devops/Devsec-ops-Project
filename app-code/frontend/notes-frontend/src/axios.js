@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API || 'http://localhost:8000',
+  baseURL: process.env.REACT_APP_BACKEND_URL || 'http://k8s-threetie-backendi-f2a2a06d08-1350903822.ap-south-1.elb.amazonaws.com',
 });
 
 instance.interceptors.request.use((config) => {
