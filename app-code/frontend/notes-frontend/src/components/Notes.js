@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../axios';
 import { TextField, Button, Typography, Container, Box, Grid, Card, CardContent, CardActions, Paper } from '@mui/material';
 
 const Notes = () => {
@@ -13,12 +13,23 @@ const Notes = () => {
 
     const fetchNotes = async () => {
         const response = await axios.get('/api/notes/');
-        setNotes(response.data);
+        const data = response.data;
+        if (Array.isArray(data)) {
+            setNotes(data);
+        } else if (data && Array.isArray(data.results)) {
+            setNotes(data.results);
+        } else if (data && typeof data === 'object') {
+            const values = Object.values(data);
+            setNotes(Array.isArray(values[0]) ? values[0] : values);
+        } else {
+            setNotes([]);
+        }
     };
 
     const addNote = async () => {
         const response = await axios.post('/api/notes/', { title, content });
-        setNotes([...notes, response.data]);
+        const created = response.data;
+        if (created) setNotes([...notes, created]);
         setTitle('');
         setContent('');
     };
